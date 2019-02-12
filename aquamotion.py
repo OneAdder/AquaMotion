@@ -97,6 +97,9 @@ def contacts():
 def authors():
     return render_template("authors.html")
 
+@app.route("/gb")
+def gd():
+    return redirect(url_for('main_page'))
 
 @app.route("/indexl")
 def indexl():
@@ -130,7 +133,10 @@ def other_html(other):
 
 @app.route('/<file>')
 def show_file(file):
-    return send_file('static/' + file, attachment_filename = file)
+    try:
+        return send_file('static/' + file, attachment_filename = file)
+    except:
+        return ''
 
 @app.route('/<other>')
 def other_url(other):
